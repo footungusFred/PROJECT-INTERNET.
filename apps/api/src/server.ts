@@ -1,25 +1,11 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import { z } from "zod";
 import { env } from "./config/env.js";
 import { prisma } from "./lib/prisma.js";
+import { pathToPageSlug, resolveQuerySchema } from "./browser/address.js";
 
 const app = Fastify({ logger: true });
 await app.register(cors, { origin: env.WEB_ORIGIN });
-
-const hostnameSchema = z
-  .string()
-  .trim()
-  .toLowerCase()
-  .max(63)
-  .regex(/^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?\.(?:net|web|world)$/);
-
-const resolveQuerySchema = z.object({
-  hostname: hostnameSchema,
-  path: z.string().trim().max(160).default("/").refine((path) => path.startsWith("/"), {
-    message: "Path must start with /",
-  }),
-});
 
 app.get("/api/v1/health", async () => ({
   status: "ok",
@@ -36,7 +22,7 @@ app.get("/api/v1/browser/resolve", async (request, reply) => {
   }
 
   const { hostname, path } = parsed.data;
-  const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "").split("/").join("-");
+  const slug = pathToPageSlug(path);
 
   try {
     const page = await prisma.page.findFirst({
