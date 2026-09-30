@@ -30,7 +30,8 @@ export default function Home() {
   function openAddress(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!address.trim()) return;
-    window.open(`/browser?address=${encodeURIComponent(address.trim())}`, "_blank", "noopener,noreferrer");
+    const opened = window.open(`/browser?address=${encodeURIComponent(address.trim())}`, "_blank", "noopener,noreferrer");
+    if (!opened) window.location.href = `/browser?address=${encodeURIComponent(address.trim())}`;
   }
 
   return (
@@ -72,14 +73,14 @@ export default function Home() {
         <div className="section-heading"><div><p className="eyebrow">THE ENTRY POINT</p><h2>Go somewhere.</h2></div><span className="section-note">A browser for a web<br />that’s still being made.</span></div>
         <div className="browser">
           <div className="browser-toolbar">
-            <div className="browser-controls"><button aria-label="Back" disabled><ArrowLeft size={16}/></button><button aria-label="Forward" disabled><ArrowRight size={16}/></button><button aria-label="Reload" onClick={() => setNotice("This preview has no page to reload yet.")}><RotateCw size={15}/></button></div>
+            <div className="browser-controls"><button aria-label="Back" disabled><ArrowLeft size={16}/></button><button aria-label="Forward" disabled><ArrowRight size={16}/></button><button aria-label="Reload" onClick={() => setNotice("Open the standalone browser to reload a page.")}><RotateCw size={15}/></button></div>
             <form className="address-form" onSubmit={openAddress}><Search size={15}/><input aria-label="Internal address" placeholder="Enter a fictional address, e.g. toaster.net" value={address} onChange={(event) => setAddress(event.target.value)} /><button type="submit">Go <ArrowDownRight size={14}/></button></form>
             <span className="browser-status"><i className={health === "connected" ? "status-dot live" : "status-dot"} />{health === "checking" ? "CONNECTING" : health === "connected" ? "API CONNECTED" : "API OFFLINE"}</span>
           </div>
           <div className="browser-empty">
             <div className="empty-index">INTERNET / 000</div>
-            <div className="empty-main"><div className="empty-symbol"><Globe2 size={28} strokeWidth={1.2}/></div><p className="eyebrow">NOTHING HERE. YET.</p><h3>This part of the<br/><em>internet is unwritten.</em></h3><p className="empty-description">Open the standalone browser to explore internal and public addresses.</p></div>
-            <div className="empty-bottom"><span>INTERNAL WEB PREVIEW</span><span>DOMAIN RESOLUTION — NOT YET AVAILABLE</span></div>
+            <div className="empty-main"><div className="empty-symbol"><Globe2 size={28} strokeWidth={1.2}/></div><p className="eyebrow">A SMALL WEB, READY TO EXPLORE.</p><h3>A browser for<br/><em>the open web.</em></h3><p className="empty-description">Open the standalone browser to explore internal and public addresses.</p></div>
+            <div className="empty-bottom"><span>INTERNAL WEB PREVIEW</span><span>INTERNAL + PUBLIC ADDRESSES</span></div>
           </div>
         </div>
       </section>
