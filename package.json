@@ -1,0 +1,14 @@
+{
+  "name": "project-internet",
+  "private": true,
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @internet/web --filter @internet/api dev",
+    "build": "pnpm --recursive build",
+    "lint": "pnpm --recursive lint",
+    "typecheck": "pnpm --recursive typecheck",
+    "test": "pnpm --recursive test",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down"
+  }
+}
