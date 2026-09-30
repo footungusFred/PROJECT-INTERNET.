@@ -3,7 +3,7 @@
 import { ArrowDownRight, ArrowLeft, ArrowRight, Globe2, RotateCw, Search, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 
-type Health = "checking" | "connected" | "unavailable";\ntype ResolvedPage = { address: { hostname: string; path: string }; site: { title: string; description: string }; page: { title: string; description: string; content: unknown } };
+type Health = "checking" | "connected" | "unavailable";type ResolvedPage = { address: { hostname: string; path: string }; site: { title: string; description: string }; page: { title: string; description: string; content: unknown } };
 
 const sites = [
   { name: "fieldnotes.net", label: "A small collection of observations", x: "7%", y: "17%" },
@@ -15,7 +15,7 @@ const sites = [
 export default function Home() {
   const [health, setHealth] = useState<Health>("checking");
   const [address, setAddress] = useState("");
-  const [notice, setNotice] = useState("");\n  const [resolved, setResolved] = useState<ResolvedPage | null>(null);\n  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -31,7 +31,7 @@ export default function Home() {
   function openAddress(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!address.trim()) return;
-    setNotice(`Internal address resolution is coming in a later milestone. “${address.trim()}” has not been opened.`);
+    window.open(`/browser?address=${encodeURIComponent(address.trim())}`, "_blank", "noopener,noreferrer");
   }
 
   return (
