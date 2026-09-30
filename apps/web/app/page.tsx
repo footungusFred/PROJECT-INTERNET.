@@ -3,7 +3,7 @@
 import { ArrowDownRight, ArrowLeft, ArrowRight, Globe2, RotateCw, Search, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 
-type Health = "checking" | "connected" | "unavailable";type ResolvedPage = { address: { hostname: string; path: string }; site: { title: string; description: string }; page: { title: string; description: string; content: unknown } };
+type Health = "checking" | "connected" | "unavailable";
 
 const sites = [
   { name: "fieldnotes.net", label: "A small collection of observations", x: "7%", y: "17%" },
@@ -15,7 +15,6 @@ const sites = [
 export default function Home() {
   const [health, setHealth] = useState<Health>("checking");
   const [address, setAddress] = useState("");
-  const [notice, setNotice] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -74,7 +73,7 @@ export default function Home() {
         <div className="browser">
           <div className="browser-toolbar">
             <div className="browser-controls"><button aria-label="Back" disabled><ArrowLeft size={16}/></button><button aria-label="Forward" disabled><ArrowRight size={16}/></button><button aria-label="Reload" onClick={() => setNotice("This preview has no page to reload yet.")}><RotateCw size={15}/></button></div>
-            <form className="address-form" onSubmit={openAddress}><Search size={15}/><input aria-label="Internal address" placeholder="Enter a fictional address, e.g. toaster.net" value={address} onChange={(event) => setAddress(event.target.value)} /><button type="submit" disabled={busy}>{busy ? "Opening…" : "Go"} <ArrowDownRight size={14}/></button></form>
+            <form className="address-form" onSubmit={openAddress}><Search size={15}/><input aria-label="Internal address" placeholder="Enter a fictional address, e.g. toaster.net" value={address} onChange={(event) => setAddress(event.target.value)} /><button type="submit">Go <ArrowDownRight size={14}/></button></form>
             <span className="browser-status"><i className={health === "connected" ? "status-dot live" : "status-dot"} />{health === "checking" ? "CONNECTING" : health === "connected" ? "API CONNECTED" : "API OFFLINE"}</span>
           </div>
           <div className="browser-empty">
@@ -82,7 +81,6 @@ export default function Home() {
             <div className="empty-main"><div className="empty-symbol"><Globe2 size={28} strokeWidth={1.2}/></div><p className="eyebrow">NOTHING HERE. YET.</p><h3>This part of the<br/><em>internet is unwritten.</em></h3><p className="empty-description">Open the standalone browser to explore internal and public addresses.</p></div>
             <div className="empty-bottom"><span>INTERNAL WEB PREVIEW</span><span>DOMAIN RESOLUTION — NOT YET AVAILABLE</span></div>
           </div>
-          {notice && <p className="browser-notice" role="status">{notice}</p>}
         </div>
       </section>
 
