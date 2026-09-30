@@ -73,7 +73,7 @@ export default function Home() {
         <div className="section-heading"><div><p className="eyebrow">THE ENTRY POINT</p><h2>Go somewhere.</h2></div><span className="section-note">A browser for a web<br />that’s still being made.</span></div>
         <div className="browser">
           <div className="browser-toolbar">
-            <div className="browser-controls"><button aria-label="Back" disabled><ArrowLeft size={16}/></button><button aria-label="Forward" disabled><ArrowRight size={16}/></button><button aria-label="Reload" onClick={() => setNotice("Open the standalone browser to reload a page.")}><RotateCw size={15}/></button></div>
+            <div className="browser-controls"><button aria-label="Back" disabled><ArrowLeft size={16}/></button><button aria-label="Forward" disabled><ArrowRight size={16}/></button><button aria-label="Reload" ><RotateCw size={15}/></button></div>
             <form className="address-form" onSubmit={openAddress}><Search size={15}/><input aria-label="Internal address" placeholder="Enter a fictional address, e.g. toaster.net" value={address} onChange={(event) => setAddress(event.target.value)} /><button type="submit">Go <ArrowDownRight size={14}/></button></form>
             <span className="browser-status"><i className={health === "connected" ? "status-dot live" : "status-dot"} />{health === "checking" ? "CONNECTING" : health === "connected" ? "API CONNECTED" : "API OFFLINE"}</span>
           </div>
