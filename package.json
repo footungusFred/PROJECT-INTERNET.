@@ -9,6 +9,8 @@
     "typecheck": "pnpm --recursive typecheck",
     "test": "pnpm --recursive test",
     "db:up": "docker compose up -d db",
-    "db:down": "docker compose down"
+    "db:down": "docker compose down",
+    "db:generate": "pnpm --filter @internet/api db:generate",
+    "db:migrate": "pnpm --filter @internet/api db:migrate"
   }
 }
