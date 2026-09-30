@@ -1,23 +1,30 @@
 # Development status
 
 ## Current milestone
-Milestone 2 — initial data model and published-page address resolution. Runtime verification has not yet been performed in a local checkout.
+Milestone 3 — browser-to-resolver integration. Changes are committed to the repository; runtime verification has not been performed in a local checkout.
 
 ## Implemented in repository
-- Initial pnpm workspace configuration and Netlify build configuration.
-- Next.js landing page and simulated browser entry interface.
-- Same-origin web health endpoint.
-- Fastify API health endpoint and environment validation.
-- PostgreSQL Docker Compose configuration.
-- Initial Prisma schema for users, sites, fictional domains, pages, and internal links.
-- Prisma client singleton.
-- Public API endpoint to resolve a published internal page by hostname and path.
-- Validation that rejects unsupported domains and URL-like path components.
-- Tests for internal address parsing and path-to-page slug mapping.
-- Prisma generate/migrate commands and initial project documentation.
+- Initial pnpm workspace and Netlify build configuration.
+- Responsive landing page and simulated internal browser.
+- Next.js same-origin health endpoint.
+- Fastify health endpoint and public published-page resolver.
+- PostgreSQL/Prisma data model for users, sites, domains, pages, and internal links.
+- Address validation and path-to-slug mapping tests.
+- Same-origin Next.js proxy at `/api/v1/browser/resolve`, forwarding to the configured Fastify API.
+- Browser form validates internal hostnames, calls the proxy, shows loading/errors, and renders returned page metadata/content.
+- Example environment files for web and API services.
 
-## Not yet verified
-Dependencies have not been installed; the app, API, database, type checks, tests, and production build have not been run in this environment. No database migration has been generated or applied. Authentication, ownership routes, site/domain creation, page editing, and publishing are not implemented. The Fastify API is not deployed on Netlify; the web app's browser UI is not yet connected to the resolver.
+## Required deployment configuration
+- Deploy PostgreSQL and apply a Prisma migration.
+- Deploy the Fastify API with `DATABASE_URL` and `WEB_ORIGIN`.
+- Deploy the Next.js app and set `API_BASE_URL` to the API origin.
+- Netlify hosts only the web app in the current configuration; it does not provision the API or database.
 
-## Next exact task
-Run install, Prisma validation/generation, type checks, and tests in a local checkout. Then add account authentication and protected site/domain creation routes with ownership checks, followed by a browser UI connection to the hosted API.
+## Not yet implemented
+- Authentication and session management.
+- Protected ownership routes, account creation, site/domain registration, page editor, draft saving, publishing, and search/discovery.
+- Abuse reporting/moderation and rate limits.
+- Automated integration/e2e tests and runtime verification.
+
+## Verification status
+No dependencies have been installed and no local typecheck, test suite, migration, or production build has been run in this environment. The web proxy and browser UI are code changes only; they are not evidence of a live deployment.
