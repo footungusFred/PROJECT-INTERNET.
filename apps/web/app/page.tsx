@@ -3,7 +3,7 @@
 import { ArrowDownRight, ArrowLeft, ArrowRight, Compass, Globe2, RotateCw, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
-type Health = "checking" | "connected" | "unavailable";
+type Health = "checking" | "connected" | "unavailable";\ntype ResolvedPage = { address: { hostname: string; path: string }; site: { title: string; description: string }; page: { title: string; description: string; content: unknown } };
 
 const sites = [
   { name: "fieldnotes.net", label: "A small collection of observations", x: "7%", y: "17%" },
@@ -15,7 +15,7 @@ const sites = [
 export default function Home() {
   const [health, setHealth] = useState<Health>("checking");
   const [address, setAddress] = useState("");
-  const [notice, setNotice] = useState("");
+  const [notice, setNotice] = useState("");\n  const [resolved, setResolved] = useState<ResolvedPage | null>(null);\n  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -74,7 +74,7 @@ export default function Home() {
         <div className="browser">
           <div className="browser-toolbar">
             <div className="browser-controls"><button aria-label="Back" disabled><ArrowLeft size={16}/></button><button aria-label="Forward" disabled><ArrowRight size={16}/></button><button aria-label="Reload" onClick={() => setNotice("This preview has no page to reload yet.")}><RotateCw size={15}/></button></div>
-            <form className="address-form" onSubmit={openAddress}><Search size={15}/><input aria-label="Internal address" placeholder="Enter a fictional address, e.g. toaster.net" value={address} onChange={(event) => setAddress(event.target.value)} /><button type="submit">Go <ArrowDownRight size={14}/></button></form>
+            <form className="address-form" onSubmit={openAddress}><Search size={15}/><input aria-label="Internal address" placeholder="Enter a fictional address, e.g. toaster.net" value={address} onChange={(event) => setAddress(event.target.value)} /><button type="submit" disabled={busy}>{busy ? "Opening…" : "Go"} <ArrowDownRight size={14}/></button></form>
             <span className="browser-status"><i className={health === "connected" ? "status-dot live" : "status-dot"} />{health === "checking" ? "CONNECTING" : health === "connected" ? "API CONNECTED" : "API OFFLINE"}</span>
           </div>
           <div className="browser-empty">
