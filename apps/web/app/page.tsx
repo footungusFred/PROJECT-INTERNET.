@@ -38,7 +38,7 @@ export default function Home() {
     <main>
       <header className="topbar">
         <a className="wordmark" href="/" aria-label="Project Internet home"><span className="mark"><Globe2 size={17} strokeWidth={1.7} /></span> PROJECT INTERNET</a>
-        <nav aria-label="Main navigation"><a href="#how">The idea</a><a href="/browser" target="_blank" rel="noopener noreferrer">Explore</a><a className="nav-cta" href="/browser" target="_blank" rel="noopener noreferrer">Launch browser <ExternalLink size={14} /></a></nav>
+        <nav aria-label="Main navigation"><a href="#how">The idea</a><a href="/browser" target="_blank" rel="noopener noreferrer">Explore</a><a className="nav-cta" href="/browser" target="_blank" rel="noopener noreferrer">Launch Browser <ExternalLink size={14} /></a></nav>
       </header>
 
       <section className="hero">
@@ -46,7 +46,7 @@ export default function Home() {
           <p className="eyebrow"><span className="eyebrow-dot" /> AN INTERNET MADE BY ITS USERS</p>
           <h1>A little internet.<br /><em>Infinite</em> corners.</h1>
           <p className="intro">A place to make a website, give it an address, and find your way into the strange and wonderful things other people make.</p>
-          <a className="text-link" href="/browser" target="_blank" rel="noopener noreferrer">Launch the browser <ExternalLink size={16} /></a>
+          <a className="text-link" href="/browser" target="_blank" rel="noopener noreferrer">Launch Browser <ExternalLink size={16} /></a>
         </div>
         <div className="network" aria-label="Illustration of fictional websites connected together">
           <div className="network-top"><span>AN OPEN, GROWING WEB</span><span>FIG. 001</span></div>
