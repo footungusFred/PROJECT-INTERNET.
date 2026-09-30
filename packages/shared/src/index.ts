@@ -7,7 +7,7 @@ export const internalHostnameSchema = z
   .trim()
   .toLowerCase()
   .max(63)
-  .regex(/^[a-z0-9](?:[a-z0-9-]{0, thirty}[a-z0-9])?\.(?:net|web|world)$/)
+  .regex(/^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?\.(?:net|web|world)$/)
   .transform((hostname) => hostname);
 
 export type HealthResponse = {
