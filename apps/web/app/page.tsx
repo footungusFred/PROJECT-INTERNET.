@@ -18,11 +18,9 @@ export default function Home() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    const base = process.env.NEXT_PUBLIC_API_URL;
-    if (!base) { setHealth("unavailable"); return; }
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 5000);
-    fetch(`${base.replace(/\/$/, "")}/api/v1/health`, { signal: controller.signal })
+    fetch("/api/v1/health", { signal: controller.signal })
       .then((response) => { if (!response.ok) throw new Error("API unavailable"); return response.json(); })
       .then((data: { status?: string }) => setHealth(data.status === "ok" ? "connected" : "unavailable"))
       .catch(() => setHealth("unavailable"))
