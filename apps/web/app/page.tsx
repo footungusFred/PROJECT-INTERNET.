@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDownRight, ArrowLeft, ArrowRight, Compass, Globe2, RotateCw, Search } from "lucide-react";
+import { ArrowDownRight, ArrowLeft, ArrowRight, Globe2, RotateCw, Search, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Health = "checking" | "connected" | "unavailable";\ntype ResolvedPage = { address: { hostname: string; path: string }; site: { title: string; description: string }; page: { title: string; description: string; content: unknown } };
@@ -38,7 +38,7 @@ export default function Home() {
     <main>
       <header className="topbar">
         <a className="wordmark" href="/" aria-label="Project Internet home"><span className="mark"><Globe2 size={17} strokeWidth={1.7} /></span> PROJECT INTERNET</a>
-        <nav aria-label="Main navigation"><a href="#how">The idea</a><a href="#browser">Explore</a><a className="nav-cta" href="#browser">Enter the internet <ArrowDownRight size={15} /></a></nav>
+        <nav aria-label="Main navigation"><a href="#how">The idea</a><a href="/browser" target="_blank" rel="noopener noreferrer">Explore</a><a className="nav-cta" href="/browser" target="_blank" rel="noopener noreferrer">Launch browser <ExternalLink size={14} /></a></nav>
       </header>
 
       <section className="hero">
@@ -46,7 +46,7 @@ export default function Home() {
           <p className="eyebrow"><span className="eyebrow-dot" /> AN INTERNET MADE BY ITS USERS</p>
           <h1>A little internet.<br /><em>Infinite</em> corners.</h1>
           <p className="intro">A place to make a website, give it an address, and find your way into the strange and wonderful things other people make.</p>
-          <a className="text-link" href="#browser">Take a look around <ArrowDownRight size={17} /></a>
+          <a className="text-link" href="/browser" target="_blank" rel="noopener noreferrer">Launch the browser <ExternalLink size={16} /></a>
         </div>
         <div className="network" aria-label="Illustration of fictional websites connected together">
           <div className="network-top"><span>AN OPEN, GROWING WEB</span><span>FIG. 001</span></div>
@@ -79,7 +79,7 @@ export default function Home() {
           </div>
           <div className="browser-empty">
             <div className="empty-index">INTERNET / 000</div>
-            <div className="empty-main"><div className="empty-symbol"><Globe2 size={28} strokeWidth={1.2}/></div><p className="eyebrow">NOTHING HERE. YET.</p><h3>This part of the<br/><em>internet is unwritten.</em></h3><p className="empty-description">The browser is ready. The websites come next.</p></div>
+            <div className="empty-main"><div className="empty-symbol"><Globe2 size={28} strokeWidth={1.2}/></div><p className="eyebrow">NOTHING HERE. YET.</p><h3>This part of the<br/><em>internet is unwritten.</em></h3><p className="empty-description">Open the standalone browser to explore internal and public addresses.</p></div>
             <div className="empty-bottom"><span>INTERNAL WEB PREVIEW</span><span>DOMAIN RESOLUTION — NOT YET AVAILABLE</span></div>
           </div>
           {notice && <p className="browser-notice" role="status">{notice}</p>}
